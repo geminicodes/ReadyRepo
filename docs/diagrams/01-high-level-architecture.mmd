@@ -1,0 +1,12 @@
+flowchart LR
+    U[User Browser] --> FE["Frontend SPA (React + Vite)"]
+    FE -->|Sign in| FA["Firebase Auth"]
+    FE -->|Bearer ID Token + API calls| API["Backend API (Express on Cloud Run)"]
+
+    API --> FS["Firestore"]
+    API --> GH["GitHub REST API"]
+    API --> GM["Google Gemini API"]
+
+    FE --> TL["Tally Forms (feedback / waitlist)"]
+
+    API --> LOG["Cloud Logging / Monitoring"]

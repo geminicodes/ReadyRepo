@@ -1,0 +1,16 @@
+flowchart TD
+    U[User] --> FE[React + Vite SPA]
+    FE -->|OAuth / token| FAuth[Firebase Auth]
+    FE -->|Bearer token API calls| API[Express API on Cloud Run]
+
+    API -->|verify token + tier| AUTH[Auth Middleware]
+    API -->|quota tx + user state| USERS[userService]
+    API -->|analysis/readme orchestration| CORE[Service Layer]
+    CORE --> GH[GitHub API]
+    CORE --> GM[Gemini API]
+    CORE --> DB[(Firestore)]
+
+    FE -->|history/results/readmes| API
+    FE --> TL[Tally Forms]
+
+    API --> OBS[Logging + Monitoring]

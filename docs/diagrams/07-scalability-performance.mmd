@@ -1,0 +1,16 @@
+flowchart TB
+    subgraph Runtime["Cloud Run Runtime"]
+      R1["Autoscaling instances"]
+      R2["Stateless API containers"]
+    end
+
+    subgraph PerfControls["Performance Controls"]
+      P1["LRU caches (auth tier, GitHub, tone, key files)"]
+      P2["Timeouts on external calls"]
+      P3["Retry/backoff for Gemini"]
+      P4["Concurrency pool for repo fetches"]
+      P5["Prompt-size fallback"]
+      P6["Cursor pagination (history/readmes)"]
+    end
+
+    Runtime --> PerfControls

@@ -1,0 +1,26 @@
+sequenceDiagram
+    autonumber
+    actor User
+    participant FE as Frontend SPA
+    participant FA as Firebase Auth
+    participant API as Cloud Run API
+    participant US as userService (quota)
+    participant GH as GitHub API
+    participant GM as Gemini API
+    participant FS as Firestore
+
+    User->>FE: Submit analyze form
+    FE->>FA: Get/refresh ID token
+    FE->>API: POST /api/v1/analyze (Bearer token + payload)
+    API->>API: authenticateUser middleware
+    API->>US: consumeAnalysisQuota(uid) [transaction]
+    US-->>API: allowed / remaining / tier
+    API->>GH: Fetch user repos + snapshots
+    GH-->>API: Repo signals
+    API->>GM: generateContent(prompt)
+    GM-->>API: JSON-like analysis output
+    API->>API: Parse + schema validate + sanitize
+    API->>FS: Save analysis under users/{uid}/analyses
+    FS-->>API: analysisId
+    API-->>FE: analysisResult + tone + rateLimit + analysisId
+    FE-->>User: Render results page

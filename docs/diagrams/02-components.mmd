@@ -1,0 +1,26 @@
+flowchart TB
+    subgraph FE["Frontend (cursor/authentication-security-audit-d8c9)"]
+      FE1["UI Pages + Components"]
+      FE2["AuthContext"]
+      FE3["AnalysisContext"]
+      FE4["apiClient/authFetch"]
+      FE5["safeInternalRedirect + guards"]
+      FE1 --> FE2
+      FE1 --> FE3
+      FE3 --> FE4
+      FE1 --> FE5
+    end
+
+    subgraph BE["Backend (cursor/server-functions-mvp-3d81)"]
+      BE1["Express Routes"]
+      BE2["Auth Middleware"]
+      BE3["Analysis/README Services"]
+      BE4["Firestore Service"]
+      BE5["GitHub + Gemini Service Adapters"]
+      BE1 --> BE2
+      BE1 --> BE3
+      BE3 --> BE4
+      BE3 --> BE5
+    end
+
+    FE4 --> BE1

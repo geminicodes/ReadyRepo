@@ -1,0 +1,14 @@
+flowchart LR
+    A[Client Request] --> B[Attach Firebase ID Token]
+    B --> C[Cloud Run API]
+    C --> D[Auth Middleware verifyIdToken]
+    D --> E{Valid token?}
+    E -- No --> X[401 Safe Error]
+    E -- Yes --> F[Zod Input Validation]
+    F --> G{Valid payload?}
+    G -- No --> Y[400 Safe Error]
+    G -- Yes --> H[Business Logic + Quota Transaction]
+    H --> I[External Calls GitHub/Gemini]
+    I --> J[Schema Validation + Sanitization]
+    J --> K[Persist to Firestore]
+    K --> L[Safe JSON Response]
