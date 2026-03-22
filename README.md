@@ -1,6 +1,6 @@
-# RepoMax
+# ReadyRepo
  
-RepoMax is a web app + API that helps you tailor your GitHub presence to a specific job posting. It focuses on **tone analysis** of the job description and **AI-assisted README rewrites** (grounded to the repo’s actual metadata/README).
+ReadyRepo is a web app + API that helps you tailor your GitHub presence to a specific job posting. It focuses on **tone analysis** of the job description and **AI-assisted README rewrites** (grounded to the repo’s actual metadata/README).
  
 > Monorepo MVP foundation: UI + authenticated API + tone analysis + README generation.
  

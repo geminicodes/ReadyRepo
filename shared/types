@@ -1,0 +1,12 @@
+export type { GitHubRepo } from "./src/types/github";
+export type { AnalysisResult } from "./src/types/analysis";
+export type { ToneAnalysis, JobPosting } from "./src/types/job";
+ 
+// User shape used by the API/auth middleware
+export type User = {
+  uid: string;
+  email: string | null;
+  tier: "free" | "pro";
+  displayName?: string | null;
+  photoURL?: string | null;
+};
